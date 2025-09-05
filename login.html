@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Akun</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2 style="text-align:center;color:#AF1740;margin-top:36px;margin-bottom:10px;">
+            <span style="font-size:2.2rem;">🔒</span><br>
+            Login
+        </h2>
+        <form class="form-login">
+            <div>
+                <label>Email</label><br>
+                <input type="email" name="email" required>
+            </div>
+            <div>
+                <label>Kata Sandi</label><br>
+                <input type="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit" class="tbl-biru">Login</button>
+            </div>
+        </form>
+    </div>
+    <div id="hasil-login" style="max-width:400px;margin:30px auto;"></div>
+    <script>
+    const form = document.querySelector('.form-login');
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = form.querySelector('[name="email"]').value;
+        const password = form.querySelector('[name="password"]').value;
+
+        const res = await fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const hasil = await res.json();
+        document.getElementById('hasil-login').innerHTML = `
+            <div style="background:#fff3f6;padding:20px;border-radius:12px;text-align:center;">
+                <h3>${hasil.message}</h3>
+            </div>
+        `;
+        if(hasil.status === 'ok') {
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1200); // 1,2 detik agar pesan sempat tampil
+        }
+        form.reset();
+    });
+    </script>
+</body>
+</html>

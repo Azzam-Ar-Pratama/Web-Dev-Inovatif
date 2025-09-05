@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Buat Akun Baru</h2>
+        <form class="form-signup" method="post" action="#">
+            <div>
+                <label>Nama Lengkap</label><br>
+                <input type="text" name="nama" required>
+            </div>
+            <div>
+                <label>Email</label><br>
+                <input type="email" name="email" required>
+            </div>
+            <div>
+                <label>Kata Sandi</label><br>
+                <input type="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit" class="tbl-biru">Daftar</button>
+            </div>
+        </form>
+    </div>
+<div id="hasil-signup" style="max-width:400px;margin:30px auto;"></div>
+    <script>
+const form = document.querySelector('.form-signup');
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const nama = form.querySelector('[name="nama"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const password = form.querySelector('[name="password"]').value;
+
+    // Kirim data ke backend
+    const res = await fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nama, email, password })
+    });
+    const hasil = await res.json();
+    if (hasil.status === 'ok') {
+        // Redirect ke halaman login setelah signup sukses
+        window.location.href = 'login.html';
+    } else {
+        document.getElementById('hasil-signup').innerHTML = `
+            <div style="background:#fff3f6;padding:20px;border-radius:12px;">
+                <h3>${hasil.message}</h3>
+            </div>
+        `;
+    }
+    form.reset();
+});
+</script>
+</body>
+</html>

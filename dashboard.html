@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Inovasi Siswa</title>
+    <link rel="stylesheet" href="signup.css">
+    <style>
+        body {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #ffe6ec 0%, #f5f7fa 100%);
+        background-attachment: fixed;
+        background-image:
+        linear-gradient(120deg, #ffe6ec 0%, #f5f7fa 100%),
+        radial-gradient(circle at 20px 20px, #ffd6e0 2px, transparent 0),
+        radial-gradient(circle at 50px 50px, #f7c5d8 2px, transparent 0);
+        background-size: cover, 80px 80px, 80px 80px;
+        }
+        .dashboard-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 18px;
+            box-shadow: 0 6px 32px rgba(175,23,64,0.10);
+            padding: 36px 32px;
+            text-align: center;
+        }
+        .dashboard-container h2 {
+            color: #AF1740;
+            margin-bottom: 18px;
+        }
+        .dashboard-container .logout-btn {
+            float: right;
+            margin-top: -10px;
+            background: #AF1740;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .dashboard-container .logout-btn:hover {
+            background: #E50000;
+        }
+        .inovasi-list {
+            margin-top: 32px;
+            text-align: left;
+        }
+        .inovasi-item {
+            background: #fff3f6;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(175,23,64,0.05);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <h2>Selamat Datang di Inovasi Telkom Schools!</h2>
+        <p>Di sini kamu bisa melihat dan menambah inovasi siswa SMK Telkom Malang.</p>
+        <div class="inovasi-list">
+            <div class="inovasi-item">
+                <img src="Digital.webp" width="135" align="right" class="inovasi-img">
+                <h3>Aplikasi Digital</h3>
+                <p>Siswa menciptakan berbagai aplikasi untuk pelayanan sekolah atau aplikasi yang bekerja sama dengan instansi seperti Dispendukcapil. </p>
+            </div>
+            <div class="inovasi-item">
+                <img src="MYD.png" width="160" align="right" class="inovasi-img">
+                <h3>Proyek Teknologi</h3>
+                <p>Melalui program seperti MYD, siswa menampilkan karya di bidang teknologi, seni, dan kewirausahaan. </p>
+            </div>
+        </div>
+        <button class="tbl-biru" style="margin-top:24px;" onclick="alert('Fitur tambah inovasi coming soon!')">+ Tambah Inovasi</button>
+    </div>
+    <script>
+    function logout() {
+        window.location.href = 'login.html';
+    }
+    </script>
+</body>
+</html>
